@@ -565,7 +565,7 @@ function App() {
       
       // Check definition for references too
       const definition = row.definition || '';
-      const defMatches = definition.match(/[⁴⁵⁶⁷⁸⁹]/g);
+      const defMatches = definition.match(/[¹²³⁴⁵⁶⁷⁸⁹]/g);
       if (defMatches) {
         defMatches.forEach(match => {
           const num = {'¹':1, '²':2, '³':3, '⁴':4, '⁵':5, '⁶':6, '⁷':7, '⁸':8, '⁹':9}[match];
@@ -673,6 +673,16 @@ function App() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    {timePoint === 'follow_up' && timePointData.tissue.includes('or') ? 'Tissue' : ''}
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    {selectedTable.title.includes('NPM1') ? 'NPM1mut/ABL1 copies (%)' : 
+                    selectedTable.title.includes('CBF') ? 'CBF mutant/ABL1 copies (%)' :
+                    selectedTable.title.includes('PML') ? 'PML::RARA/ABL1 copies (%)' :
+                    selectedTable.title.includes('FLT3') ? 'FLT3-ITD VAF (%)' :
+                    'MRD % (LAIP+ or DfN+ blasts/CD45+ cells)'}
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Definition
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -723,7 +733,7 @@ function App() {
             <div className="mt-4 text-xs text-gray-600 space-y-1">
               {referencedFootnotes.map(num => {
                 if (selectedTable.footnotes[num]) {
-                  return <p key={num}>{num === "1" ? "¹" : num === "2" ? "²" : num === "3" ? "³" : num === "4" ? "⁴" : num === "5" ? "⁵" : num}{selectedTable.footnotes[num].substring(1)}</p>
+                  return <p key={num}>{num === "1" ? "¹" : num === "2" ? "²" : num === "3" ? "³" : num === "4" ? "⁴" : num === "5" ? "⁵" : num}{selectedTable.footnotes[num]}</p>;
                 }
                 return null;
               })}
@@ -745,14 +755,4 @@ function App() {
   );
 }
 
-export default App; uppercase tracking-wider">
-                    {timePoint === 'follow_up' && timePointData.tissue.includes('or') ? 'Tissue' : ''}
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    {selectedTable.title.includes('NPM1') ? 'NPM1mut/ABL1 copies (%)' : 
-                    selectedTable.title.includes('CBF') ? 'CBF mutant/ABL1 copies (%)' :
-                    selectedTable.title.includes('PML') ? 'PML::RARA/ABL1 copies (%)' :
-                    selectedTable.title.includes('FLT3') ? 'FLT3-ITD VAF (%)' :
-                    'MRD % (LAIP+ or DfN+ blasts/CD45+ cells)'}
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500
+export default App;

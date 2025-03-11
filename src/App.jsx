@@ -853,8 +853,9 @@ function App() {
         </div>
       )}
 
-      <footer className="mt-8 text-center text-sm text-gray-500">
+         <footer className="mt-8 text-center text-sm text-gray-500">
         <p>European LeukemiaNet (ELN) 2025 MRD Guidelines - Development Version</p>
+        <p className="mt-2">App created by L. H. Haaksma</p>
       </footer>
     </div>
   );
